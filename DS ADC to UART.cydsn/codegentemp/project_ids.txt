@@ -1,0 +1,7 @@
+C:\Ari\Rocketry\Porpellent testing code\PSOC\DS ADC to UART.cydsn\DS ADC to UART.cyprj|447b198b-7737-47bf-8a5e-bcb02c923fff
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|8cf9c7b8-237a-4983-b698-6286092e2887
+C:\Users\hp\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|67e70597-da2f-42ca-b5b0-9646de1e09fc
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|095d68c4-0d13-4e4d-b1cb-d507fcf91d23
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|cd18d064-12d4-42bb-bc0e-2b72ae805b09
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|12423b63-fbdd-4f39-aa08-28a8770e7c07
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|05c14e24-5e85-41ac-90d6-89fa2beaebf1
