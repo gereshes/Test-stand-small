@@ -1,0 +1,1192 @@
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.millis_isr,"ax",%progbits
+  20              		.align	2
+  21              		.global	millis_isr
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	millis_isr, %function
+  25              	millis_isr:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdio.h>
+  14:main.c        **** 
+  15:main.c        **** volatile unsigned long _millis=0;
+  16:main.c        **** 
+  17:main.c        **** CY_ISR(millis_isr){
+  28              		.loc 1 17 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  18:main.c        ****     _millis++;
+  36              		.loc 1 18 0
+  37 0002 034A     		ldr	r2, .L3
+  38 0004 1368     		ldr	r3, [r2]
+  39 0006 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 2
+
+
+  40 0008 1360     		str	r3, [r2]
+  19:main.c        ****     millis_interrupt_ClearPending();
+  41              		.loc 1 19 0
+  42 000a FFF7FEFF 		bl	millis_interrupt_ClearPending
+  43              	.LVL0:
+  44 000e 08BD     		pop	{r3, pc}
+  45              	.L4:
+  46              		.align	2
+  47              	.L3:
+  48 0010 00000000 		.word	.LANCHOR0
+  49              		.cfi_endproc
+  50              	.LFE64:
+  51              		.size	millis_isr, .-millis_isr
+  52              		.section	.text.millis,"ax",%progbits
+  53              		.align	2
+  54              		.global	millis
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	millis, %function
+  58              	millis:
+  59              	.LFB65:
+  20:main.c        **** }
+  21:main.c        **** 
+  22:main.c        **** unsigned long millis(){
+  60              		.loc 1 22 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  23:main.c        ****     return _millis;
+  65              		.loc 1 23 0
+  66 0000 014B     		ldr	r3, .L6
+  67 0002 1868     		ldr	r0, [r3]
+  24:main.c        **** }
+  68              		.loc 1 24 0
+  69 0004 7047     		bx	lr
+  70              	.L7:
+  71 0006 00BF     		.align	2
+  72              	.L6:
+  73 0008 00000000 		.word	.LANCHOR0
+  74              		.cfi_endproc
+  75              	.LFE65:
+  76              		.size	millis, .-millis
+  77              		.section	.text.main,"ax",%progbits
+  78              		.align	2
+  79              		.global	main
+  80              		.thumb
+  81              		.thumb_func
+  82              		.type	main, %function
+  83              	main:
+  84              	.LFB66:
+  25:main.c        ****     
+  26:main.c        **** int main(void)
+  27:main.c        **** {
+  85              		.loc 1 27 0
+  86              		.cfi_startproc
+  87              		@ args = 0, pretend = 0, frame = 256
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 3
+
+
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89 0000 30B5     		push	{r4, r5, lr}
+  90              		.cfi_def_cfa_offset 12
+  91              		.cfi_offset 4, -12
+  92              		.cfi_offset 5, -8
+  93              		.cfi_offset 14, -4
+  94 0002 C3B0     		sub	sp, sp, #268
+  95              		.cfi_def_cfa_offset 280
+  96              	.LVL1:
+  28:main.c        ****     int i=0;
+  29:main.c        ****     int reading=0;
+  30:main.c        ****     char text[256]="";
+  97              		.loc 1 30 0
+  98 0004 0021     		movs	r1, #0
+  99 0006 0291     		str	r1, [sp, #8]
+ 100 0008 FC22     		movs	r2, #252
+ 101 000a 03A8     		add	r0, sp, #12
+ 102 000c FFF7FEFF 		bl	memset
+ 103              	.LVL2:
+  31:main.c        ****     int samp_rate = 110; // How many samples from the adc before they get averaged
+  32:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 104              		.loc 1 32 0
+ 105              		.syntax unified
+ 106              	@ 32 "main.c" 1
+ 107 0010 62B6     		CPSIE   i
+ 108              	@ 0 "" 2
+  33:main.c        ****     millis_interrupt_StartEx(millis_isr);
+ 109              		.loc 1 33 0
+ 110              		.thumb
+ 111              		.syntax unified
+ 112 0012 1448     		ldr	r0, .L13
+ 113 0014 FFF7FEFF 		bl	millis_interrupt_StartEx
+ 114              	.LVL3:
+  34:main.c        ****     UART_Start();
+ 115              		.loc 1 34 0
+ 116 0018 FFF7FEFF 		bl	UART_Start
+ 117              	.LVL4:
+  35:main.c        ****     adc_Start();
+ 118              		.loc 1 35 0
+ 119 001c FFF7FEFF 		bl	adc_Start
+ 120              	.LVL5:
+  36:main.c        ****     adc_StartConvert();
+ 121              		.loc 1 36 0
+ 122 0020 FFF7FEFF 		bl	adc_StartConvert
+ 123              	.LVL6:
+ 124              	.L11:
+  37:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  38:main.c        **** 
+  39:main.c        ****     for(;;)
+  40:main.c        ****     {
+  41:main.c        ****         reading = 0;
+ 125              		.loc 1 41 0
+ 126 0024 0025     		movs	r5, #0
+  42:main.c        ****         //high = 0;
+  43:main.c        ****         
+  44:main.c        ****         for(i=0; i<samp_rate; i++){
+ 127              		.loc 1 44 0
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 4
+
+
+ 128 0026 2C46     		mov	r4, r5
+ 129 0028 06E0     		b	.L9
+ 130              	.LVL7:
+ 131              	.L10:
+  45:main.c        ****             adc_IsEndConversion(adc_WAIT_FOR_RESULT);
+ 132              		.loc 1 45 0 discriminator 3
+ 133 002a 0020     		movs	r0, #0
+ 134 002c FFF7FEFF 		bl	adc_IsEndConversion
+ 135              	.LVL8:
+  46:main.c        ****             reading += adc_GetResult32();
+ 136              		.loc 1 46 0 discriminator 3
+ 137 0030 FFF7FEFF 		bl	adc_GetResult32
+ 138              	.LVL9:
+ 139 0034 0544     		add	r5, r5, r0
+ 140              	.LVL10:
+  44:main.c        ****             adc_IsEndConversion(adc_WAIT_FOR_RESULT);
+ 141              		.loc 1 44 0 discriminator 3
+ 142 0036 0134     		adds	r4, r4, #1
+ 143              	.LVL11:
+ 144              	.L9:
+  44:main.c        ****             adc_IsEndConversion(adc_WAIT_FOR_RESULT);
+ 145              		.loc 1 44 0 is_stmt 0 discriminator 1
+ 146 0038 6D2C     		cmp	r4, #109
+ 147 003a F6DD     		ble	.L10
+  47:main.c        ****         }
+  48:main.c        ****         reading /= samp_rate;
+ 148              		.loc 1 48 0 is_stmt 1
+ 149 003c 0A4C     		ldr	r4, .L13+4
+ 150              	.LVL12:
+ 151 003e 84FB0534 		smull	r3, r4, r4, r5
+ 152 0042 ED17     		asrs	r5, r5, #31
+ 153              	.LVL13:
+ 154 0044 C5EBA404 		rsb	r4, r5, r4, asr #2
+ 155              	.LVL14:
+  49:main.c        ****         //reading = adc_CountsTo_uVolts(reading);
+  50:main.c        ****         snprintf(text, 90, "%ld:%d\r\n", millis(), reading);
+ 156              		.loc 1 50 0
+ 157 0048 FFF7FEFF 		bl	millis
+ 158              	.LVL15:
+ 159 004c 0094     		str	r4, [sp]
+ 160 004e 0346     		mov	r3, r0
+ 161 0050 064A     		ldr	r2, .L13+8
+ 162 0052 5A21     		movs	r1, #90
+ 163 0054 02A8     		add	r0, sp, #8
+ 164 0056 FFF7FEFF 		bl	snprintf
+ 165              	.LVL16:
+  51:main.c        ****         UART_PutString(text);
+ 166              		.loc 1 51 0
+ 167 005a 02A8     		add	r0, sp, #8
+ 168 005c FFF7FEFF 		bl	UART_PutString
+ 169              	.LVL17:
+  52:main.c        ****     }
+ 170              		.loc 1 52 0
+ 171 0060 E0E7     		b	.L11
+ 172              	.L14:
+ 173 0062 00BF     		.align	2
+ 174              	.L13:
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 5
+
+
+ 175 0064 00000000 		.word	millis_isr
+ 176 0068 95204F09 		.word	156180629
+ 177 006c 00000000 		.word	.LC0
+ 178              		.cfi_endproc
+ 179              	.LFE66:
+ 180              		.size	main, .-main
+ 181              		.global	_millis
+ 182              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 183              		.align	2
+ 184              	.LC0:
+ 185 0000 256C643A 		.ascii	"%ld:%d\015\012\000"
+ 185      25640D0A 
+ 185      00
+ 186              		.bss
+ 187              		.align	2
+ 188              		.set	.LANCHOR0,. + 0
+ 189              		.type	_millis, %object
+ 190              		.size	_millis, 4
+ 191              	_millis:
+ 192 0000 00000000 		.space	4
+ 193              		.text
+ 194              	.Letext0:
+ 195              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 196              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 197              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+ 198              		.file 5 "Generated_Source\\PSoC5/millis_interrupt.h"
+ 199              		.file 6 "Generated_Source\\PSoC5/UART.h"
+ 200              		.file 7 "Generated_Source\\PSoC5/adc.h"
+ 201              		.file 8 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 202              		.section	.debug_info,"",%progbits
+ 203              	.Ldebug_info0:
+ 204 0000 7C020000 		.4byte	0x27c
+ 205 0004 0400     		.2byte	0x4
+ 206 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 207 000a 04       		.byte	0x4
+ 208 000b 01       		.uleb128 0x1
+ 209 000c 2E000000 		.4byte	.LASF30
+ 210 0010 0C       		.byte	0xc
+ 211 0011 16020000 		.4byte	.LASF31
+ 212 0015 EC000000 		.4byte	.LASF32
+ 213 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 214 001d 00000000 		.4byte	0
+ 215 0021 00000000 		.4byte	.Ldebug_line0
+ 216 0025 02       		.uleb128 0x2
+ 217 0026 01       		.byte	0x1
+ 218 0027 06       		.byte	0x6
+ 219 0028 52020000 		.4byte	.LASF0
+ 220 002c 02       		.uleb128 0x2
+ 221 002d 01       		.byte	0x1
+ 222 002e 08       		.byte	0x8
+ 223 002f 76010000 		.4byte	.LASF1
+ 224 0033 02       		.uleb128 0x2
+ 225 0034 02       		.byte	0x2
+ 226 0035 05       		.byte	0x5
+ 227 0036 22020000 		.4byte	.LASF2
+ 228 003a 02       		.uleb128 0x2
+ 229 003b 02       		.byte	0x2
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 6
+
+
+ 230 003c 07       		.byte	0x7
+ 231 003d CE000000 		.4byte	.LASF3
+ 232 0041 03       		.uleb128 0x3
+ 233 0042 00000000 		.4byte	.LASF9
+ 234 0046 02       		.byte	0x2
+ 235 0047 3F       		.byte	0x3f
+ 236 0048 4C000000 		.4byte	0x4c
+ 237 004c 02       		.uleb128 0x2
+ 238 004d 04       		.byte	0x4
+ 239 004e 05       		.byte	0x5
+ 240 004f 36020000 		.4byte	.LASF4
+ 241 0053 02       		.uleb128 0x2
+ 242 0054 04       		.byte	0x4
+ 243 0055 07       		.byte	0x7
+ 244 0056 BC000000 		.4byte	.LASF5
+ 245 005a 02       		.uleb128 0x2
+ 246 005b 08       		.byte	0x8
+ 247 005c 05       		.byte	0x5
+ 248 005d 08020000 		.4byte	.LASF6
+ 249 0061 02       		.uleb128 0x2
+ 250 0062 08       		.byte	0x8
+ 251 0063 07       		.byte	0x7
+ 252 0064 E0010000 		.4byte	.LASF7
+ 253 0068 04       		.uleb128 0x4
+ 254 0069 04       		.byte	0x4
+ 255 006a 05       		.byte	0x5
+ 256 006b 696E7400 		.ascii	"int\000"
+ 257 006f 02       		.uleb128 0x2
+ 258 0070 04       		.byte	0x4
+ 259 0071 07       		.byte	0x7
+ 260 0072 D3010000 		.4byte	.LASF8
+ 261 0076 03       		.uleb128 0x3
+ 262 0077 F7010000 		.4byte	.LASF10
+ 263 007b 03       		.byte	0x3
+ 264 007c 2C       		.byte	0x2c
+ 265 007d 41000000 		.4byte	0x41
+ 266 0081 02       		.uleb128 0x2
+ 267 0082 04       		.byte	0x4
+ 268 0083 04       		.byte	0x4
+ 269 0084 20000000 		.4byte	.LASF11
+ 270 0088 02       		.uleb128 0x2
+ 271 0089 08       		.byte	0x8
+ 272 008a 04       		.byte	0x4
+ 273 008b 8B010000 		.4byte	.LASF12
+ 274 008f 02       		.uleb128 0x2
+ 275 0090 01       		.byte	0x1
+ 276 0091 08       		.byte	0x8
+ 277 0092 1D020000 		.4byte	.LASF13
+ 278 0096 02       		.uleb128 0x2
+ 279 0097 08       		.byte	0x8
+ 280 0098 04       		.byte	0x4
+ 281 0099 46020000 		.4byte	.LASF14
+ 282 009d 02       		.uleb128 0x2
+ 283 009e 04       		.byte	0x4
+ 284 009f 07       		.byte	0x7
+ 285 00a0 FF010000 		.4byte	.LASF15
+ 286 00a4 05       		.uleb128 0x5
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 7
+
+
+ 287 00a5 BB010000 		.4byte	.LASF33
+ 288 00a9 01       		.byte	0x1
+ 289 00aa 11       		.byte	0x11
+ 290 00ab 00000000 		.4byte	.LFB64
+ 291 00af 14000000 		.4byte	.LFE64-.LFB64
+ 292 00b3 01       		.uleb128 0x1
+ 293 00b4 9C       		.byte	0x9c
+ 294 00b5 C3000000 		.4byte	0xc3
+ 295 00b9 06       		.uleb128 0x6
+ 296 00ba 0E000000 		.4byte	.LVL0
+ 297 00be 13020000 		.4byte	0x213
+ 298 00c2 00       		.byte	0
+ 299 00c3 07       		.uleb128 0x7
+ 300 00c4 3F020000 		.4byte	.LASF34
+ 301 00c8 01       		.byte	0x1
+ 302 00c9 16       		.byte	0x16
+ 303 00ca 53000000 		.4byte	0x53
+ 304 00ce 00000000 		.4byte	.LFB65
+ 305 00d2 0C000000 		.4byte	.LFE65-.LFB65
+ 306 00d6 01       		.uleb128 0x1
+ 307 00d7 9C       		.byte	0x9c
+ 308 00d8 08       		.uleb128 0x8
+ 309 00d9 A2010000 		.4byte	.LASF35
+ 310 00dd 01       		.byte	0x1
+ 311 00de 1A       		.byte	0x1a
+ 312 00df 68000000 		.4byte	0x68
+ 313 00e3 00000000 		.4byte	.LFB66
+ 314 00e7 70000000 		.4byte	.LFE66-.LFB66
+ 315 00eb 01       		.uleb128 0x1
+ 316 00ec 9C       		.byte	0x9c
+ 317 00ed DC010000 		.4byte	0x1dc
+ 318 00f1 09       		.uleb128 0x9
+ 319 00f2 6900     		.ascii	"i\000"
+ 320 00f4 01       		.byte	0x1
+ 321 00f5 1C       		.byte	0x1c
+ 322 00f6 68000000 		.4byte	0x68
+ 323 00fa 00000000 		.4byte	.LLST0
+ 324 00fe 0A       		.uleb128 0xa
+ 325 00ff 18000000 		.4byte	.LASF16
+ 326 0103 01       		.byte	0x1
+ 327 0104 1D       		.byte	0x1d
+ 328 0105 68000000 		.4byte	0x68
+ 329 0109 1F000000 		.4byte	.LLST1
+ 330 010d 0B       		.uleb128 0xb
+ 331 010e 13000000 		.4byte	.LASF17
+ 332 0112 01       		.byte	0x1
+ 333 0113 1E       		.byte	0x1e
+ 334 0114 DC010000 		.4byte	0x1dc
+ 335 0118 03       		.uleb128 0x3
+ 336 0119 91       		.byte	0x91
+ 337 011a F07D     		.sleb128 -272
+ 338 011c 0C       		.uleb128 0xc
+ 339 011d 6D020000 		.4byte	.LASF18
+ 340 0121 01       		.byte	0x1
+ 341 0122 1F       		.byte	0x1f
+ 342 0123 68000000 		.4byte	0x68
+ 343 0127 6E       		.byte	0x6e
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 8
+
+
+ 344 0128 0D       		.uleb128 0xd
+ 345 0129 10000000 		.4byte	.LVL2
+ 346 012d 1E020000 		.4byte	0x21e
+ 347 0131 48010000 		.4byte	0x148
+ 348 0135 0E       		.uleb128 0xe
+ 349 0136 01       		.uleb128 0x1
+ 350 0137 50       		.byte	0x50
+ 351 0138 03       		.uleb128 0x3
+ 352 0139 91       		.byte	0x91
+ 353 013a F47D     		.sleb128 -268
+ 354 013c 0E       		.uleb128 0xe
+ 355 013d 01       		.uleb128 0x1
+ 356 013e 51       		.byte	0x51
+ 357 013f 01       		.uleb128 0x1
+ 358 0140 30       		.byte	0x30
+ 359 0141 0E       		.uleb128 0xe
+ 360 0142 01       		.uleb128 0x1
+ 361 0143 52       		.byte	0x52
+ 362 0144 02       		.uleb128 0x2
+ 363 0145 08       		.byte	0x8
+ 364 0146 FC       		.byte	0xfc
+ 365 0147 00       		.byte	0
+ 366 0148 0D       		.uleb128 0xd
+ 367 0149 18000000 		.4byte	.LVL3
+ 368 014d 27020000 		.4byte	0x227
+ 369 0151 5F010000 		.4byte	0x15f
+ 370 0155 0E       		.uleb128 0xe
+ 371 0156 01       		.uleb128 0x1
+ 372 0157 50       		.byte	0x50
+ 373 0158 05       		.uleb128 0x5
+ 374 0159 03       		.byte	0x3
+ 375 015a 00000000 		.4byte	millis_isr
+ 376 015e 00       		.byte	0
+ 377 015f 06       		.uleb128 0x6
+ 378 0160 1C000000 		.4byte	.LVL4
+ 379 0164 32020000 		.4byte	0x232
+ 380 0168 06       		.uleb128 0x6
+ 381 0169 20000000 		.4byte	.LVL5
+ 382 016d 3D020000 		.4byte	0x23d
+ 383 0171 06       		.uleb128 0x6
+ 384 0172 24000000 		.4byte	.LVL6
+ 385 0176 48020000 		.4byte	0x248
+ 386 017a 0D       		.uleb128 0xd
+ 387 017b 30000000 		.4byte	.LVL8
+ 388 017f 53020000 		.4byte	0x253
+ 389 0183 8D010000 		.4byte	0x18d
+ 390 0187 0E       		.uleb128 0xe
+ 391 0188 01       		.uleb128 0x1
+ 392 0189 50       		.byte	0x50
+ 393 018a 01       		.uleb128 0x1
+ 394 018b 30       		.byte	0x30
+ 395 018c 00       		.byte	0
+ 396 018d 06       		.uleb128 0x6
+ 397 018e 34000000 		.4byte	.LVL9
+ 398 0192 5E020000 		.4byte	0x25e
+ 399 0196 06       		.uleb128 0x6
+ 400 0197 4C000000 		.4byte	.LVL15
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 9
+
+
+ 401 019b C3000000 		.4byte	0xc3
+ 402 019f 0D       		.uleb128 0xd
+ 403 01a0 5A000000 		.4byte	.LVL16
+ 404 01a4 69020000 		.4byte	0x269
+ 405 01a8 CA010000 		.4byte	0x1ca
+ 406 01ac 0E       		.uleb128 0xe
+ 407 01ad 01       		.uleb128 0x1
+ 408 01ae 50       		.byte	0x50
+ 409 01af 03       		.uleb128 0x3
+ 410 01b0 91       		.byte	0x91
+ 411 01b1 F07D     		.sleb128 -272
+ 412 01b3 0E       		.uleb128 0xe
+ 413 01b4 01       		.uleb128 0x1
+ 414 01b5 51       		.byte	0x51
+ 415 01b6 02       		.uleb128 0x2
+ 416 01b7 08       		.byte	0x8
+ 417 01b8 5A       		.byte	0x5a
+ 418 01b9 0E       		.uleb128 0xe
+ 419 01ba 01       		.uleb128 0x1
+ 420 01bb 52       		.byte	0x52
+ 421 01bc 05       		.uleb128 0x5
+ 422 01bd 03       		.byte	0x3
+ 423 01be 00000000 		.4byte	.LC0
+ 424 01c2 0E       		.uleb128 0xe
+ 425 01c3 02       		.uleb128 0x2
+ 426 01c4 7D       		.byte	0x7d
+ 427 01c5 00       		.sleb128 0
+ 428 01c6 02       		.uleb128 0x2
+ 429 01c7 74       		.byte	0x74
+ 430 01c8 00       		.sleb128 0
+ 431 01c9 00       		.byte	0
+ 432 01ca 0F       		.uleb128 0xf
+ 433 01cb 60000000 		.4byte	.LVL17
+ 434 01cf 74020000 		.4byte	0x274
+ 435 01d3 0E       		.uleb128 0xe
+ 436 01d4 01       		.uleb128 0x1
+ 437 01d5 50       		.byte	0x50
+ 438 01d6 03       		.uleb128 0x3
+ 439 01d7 91       		.byte	0x91
+ 440 01d8 F07D     		.sleb128 -272
+ 441 01da 00       		.byte	0
+ 442 01db 00       		.byte	0
+ 443 01dc 10       		.uleb128 0x10
+ 444 01dd 8F000000 		.4byte	0x8f
+ 445 01e1 EC010000 		.4byte	0x1ec
+ 446 01e5 11       		.uleb128 0x11
+ 447 01e6 9D000000 		.4byte	0x9d
+ 448 01ea FF       		.byte	0xff
+ 449 01eb 00       		.byte	0
+ 450 01ec 12       		.uleb128 0x12
+ 451 01ed C6010000 		.4byte	.LASF19
+ 452 01f1 04       		.byte	0x4
+ 453 01f2 9606     		.2byte	0x696
+ 454 01f4 F8010000 		.4byte	0x1f8
+ 455 01f8 13       		.uleb128 0x13
+ 456 01f9 76000000 		.4byte	0x76
+ 457 01fd 14       		.uleb128 0x14
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 10
+
+
+ 458 01fe 26000000 		.4byte	.LASF20
+ 459 0202 01       		.byte	0x1
+ 460 0203 0F       		.byte	0xf
+ 461 0204 0E020000 		.4byte	0x20e
+ 462 0208 05       		.uleb128 0x5
+ 463 0209 03       		.byte	0x3
+ 464 020a 00000000 		.4byte	_millis
+ 465 020e 13       		.uleb128 0x13
+ 466 020f 53000000 		.4byte	0x53
+ 467 0213 15       		.uleb128 0x15
+ 468 0214 58010000 		.4byte	.LASF21
+ 469 0218 58010000 		.4byte	.LASF21
+ 470 021c 05       		.byte	0x5
+ 471 021d 28       		.byte	0x28
+ 472 021e 16       		.uleb128 0x16
+ 473 021f 84010000 		.4byte	.LASF36
+ 474 0223 84010000 		.4byte	.LASF36
+ 475 0227 15       		.uleb128 0x15
+ 476 0228 2E010000 		.4byte	.LASF22
+ 477 022c 2E010000 		.4byte	.LASF22
+ 478 0230 05       		.byte	0x5
+ 479 0231 18       		.byte	0x18
+ 480 0232 15       		.uleb128 0x15
+ 481 0233 E1000000 		.4byte	.LASF23
+ 482 0237 E1000000 		.4byte	.LASF23
+ 483 023b 06       		.byte	0x6
+ 484 023c 54       		.byte	0x54
+ 485 023d 15       		.uleb128 0x15
+ 486 023e 2C020000 		.4byte	.LASF24
+ 487 0242 2C020000 		.4byte	.LASF24
+ 488 0246 07       		.byte	0x7
+ 489 0247 3A       		.byte	0x3a
+ 490 0248 15       		.uleb128 0x15
+ 491 0249 47010000 		.4byte	.LASF25
+ 492 024d 47010000 		.4byte	.LASF25
+ 493 0251 07       		.byte	0x7
+ 494 0252 3D       		.byte	0x3d
+ 495 0253 15       		.uleb128 0x15
+ 496 0254 A7010000 		.4byte	.LASF26
+ 497 0258 A7010000 		.4byte	.LASF26
+ 498 025c 07       		.byte	0x7
+ 499 025d 3F       		.byte	0x3f
+ 500 025e 15       		.uleb128 0x15
+ 501 025f 92010000 		.4byte	.LASF27
+ 502 0263 92010000 		.4byte	.LASF27
+ 503 0267 07       		.byte	0x7
+ 504 0268 42       		.byte	0x42
+ 505 0269 15       		.uleb128 0x15
+ 506 026a 0A000000 		.4byte	.LASF28
+ 507 026e 0A000000 		.4byte	.LASF28
+ 508 0272 08       		.byte	0x8
+ 509 0273 FD       		.byte	0xfd
+ 510 0274 15       		.uleb128 0x15
+ 511 0275 5E020000 		.4byte	.LASF29
+ 512 0279 5E020000 		.4byte	.LASF29
+ 513 027d 06       		.byte	0x6
+ 514 027e 8B       		.byte	0x8b
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 11
+
+
+ 515 027f 00       		.byte	0
+ 516              		.section	.debug_abbrev,"",%progbits
+ 517              	.Ldebug_abbrev0:
+ 518 0000 01       		.uleb128 0x1
+ 519 0001 11       		.uleb128 0x11
+ 520 0002 01       		.byte	0x1
+ 521 0003 25       		.uleb128 0x25
+ 522 0004 0E       		.uleb128 0xe
+ 523 0005 13       		.uleb128 0x13
+ 524 0006 0B       		.uleb128 0xb
+ 525 0007 03       		.uleb128 0x3
+ 526 0008 0E       		.uleb128 0xe
+ 527 0009 1B       		.uleb128 0x1b
+ 528 000a 0E       		.uleb128 0xe
+ 529 000b 55       		.uleb128 0x55
+ 530 000c 17       		.uleb128 0x17
+ 531 000d 11       		.uleb128 0x11
+ 532 000e 01       		.uleb128 0x1
+ 533 000f 10       		.uleb128 0x10
+ 534 0010 17       		.uleb128 0x17
+ 535 0011 00       		.byte	0
+ 536 0012 00       		.byte	0
+ 537 0013 02       		.uleb128 0x2
+ 538 0014 24       		.uleb128 0x24
+ 539 0015 00       		.byte	0
+ 540 0016 0B       		.uleb128 0xb
+ 541 0017 0B       		.uleb128 0xb
+ 542 0018 3E       		.uleb128 0x3e
+ 543 0019 0B       		.uleb128 0xb
+ 544 001a 03       		.uleb128 0x3
+ 545 001b 0E       		.uleb128 0xe
+ 546 001c 00       		.byte	0
+ 547 001d 00       		.byte	0
+ 548 001e 03       		.uleb128 0x3
+ 549 001f 16       		.uleb128 0x16
+ 550 0020 00       		.byte	0
+ 551 0021 03       		.uleb128 0x3
+ 552 0022 0E       		.uleb128 0xe
+ 553 0023 3A       		.uleb128 0x3a
+ 554 0024 0B       		.uleb128 0xb
+ 555 0025 3B       		.uleb128 0x3b
+ 556 0026 0B       		.uleb128 0xb
+ 557 0027 49       		.uleb128 0x49
+ 558 0028 13       		.uleb128 0x13
+ 559 0029 00       		.byte	0
+ 560 002a 00       		.byte	0
+ 561 002b 04       		.uleb128 0x4
+ 562 002c 24       		.uleb128 0x24
+ 563 002d 00       		.byte	0
+ 564 002e 0B       		.uleb128 0xb
+ 565 002f 0B       		.uleb128 0xb
+ 566 0030 3E       		.uleb128 0x3e
+ 567 0031 0B       		.uleb128 0xb
+ 568 0032 03       		.uleb128 0x3
+ 569 0033 08       		.uleb128 0x8
+ 570 0034 00       		.byte	0
+ 571 0035 00       		.byte	0
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 12
+
+
+ 572 0036 05       		.uleb128 0x5
+ 573 0037 2E       		.uleb128 0x2e
+ 574 0038 01       		.byte	0x1
+ 575 0039 3F       		.uleb128 0x3f
+ 576 003a 19       		.uleb128 0x19
+ 577 003b 03       		.uleb128 0x3
+ 578 003c 0E       		.uleb128 0xe
+ 579 003d 3A       		.uleb128 0x3a
+ 580 003e 0B       		.uleb128 0xb
+ 581 003f 3B       		.uleb128 0x3b
+ 582 0040 0B       		.uleb128 0xb
+ 583 0041 27       		.uleb128 0x27
+ 584 0042 19       		.uleb128 0x19
+ 585 0043 11       		.uleb128 0x11
+ 586 0044 01       		.uleb128 0x1
+ 587 0045 12       		.uleb128 0x12
+ 588 0046 06       		.uleb128 0x6
+ 589 0047 40       		.uleb128 0x40
+ 590 0048 18       		.uleb128 0x18
+ 591 0049 9742     		.uleb128 0x2117
+ 592 004b 19       		.uleb128 0x19
+ 593 004c 01       		.uleb128 0x1
+ 594 004d 13       		.uleb128 0x13
+ 595 004e 00       		.byte	0
+ 596 004f 00       		.byte	0
+ 597 0050 06       		.uleb128 0x6
+ 598 0051 898201   		.uleb128 0x4109
+ 599 0054 00       		.byte	0
+ 600 0055 11       		.uleb128 0x11
+ 601 0056 01       		.uleb128 0x1
+ 602 0057 31       		.uleb128 0x31
+ 603 0058 13       		.uleb128 0x13
+ 604 0059 00       		.byte	0
+ 605 005a 00       		.byte	0
+ 606 005b 07       		.uleb128 0x7
+ 607 005c 2E       		.uleb128 0x2e
+ 608 005d 00       		.byte	0
+ 609 005e 3F       		.uleb128 0x3f
+ 610 005f 19       		.uleb128 0x19
+ 611 0060 03       		.uleb128 0x3
+ 612 0061 0E       		.uleb128 0xe
+ 613 0062 3A       		.uleb128 0x3a
+ 614 0063 0B       		.uleb128 0xb
+ 615 0064 3B       		.uleb128 0x3b
+ 616 0065 0B       		.uleb128 0xb
+ 617 0066 49       		.uleb128 0x49
+ 618 0067 13       		.uleb128 0x13
+ 619 0068 11       		.uleb128 0x11
+ 620 0069 01       		.uleb128 0x1
+ 621 006a 12       		.uleb128 0x12
+ 622 006b 06       		.uleb128 0x6
+ 623 006c 40       		.uleb128 0x40
+ 624 006d 18       		.uleb128 0x18
+ 625 006e 9742     		.uleb128 0x2117
+ 626 0070 19       		.uleb128 0x19
+ 627 0071 00       		.byte	0
+ 628 0072 00       		.byte	0
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 13
+
+
+ 629 0073 08       		.uleb128 0x8
+ 630 0074 2E       		.uleb128 0x2e
+ 631 0075 01       		.byte	0x1
+ 632 0076 3F       		.uleb128 0x3f
+ 633 0077 19       		.uleb128 0x19
+ 634 0078 03       		.uleb128 0x3
+ 635 0079 0E       		.uleb128 0xe
+ 636 007a 3A       		.uleb128 0x3a
+ 637 007b 0B       		.uleb128 0xb
+ 638 007c 3B       		.uleb128 0x3b
+ 639 007d 0B       		.uleb128 0xb
+ 640 007e 27       		.uleb128 0x27
+ 641 007f 19       		.uleb128 0x19
+ 642 0080 49       		.uleb128 0x49
+ 643 0081 13       		.uleb128 0x13
+ 644 0082 8701     		.uleb128 0x87
+ 645 0084 19       		.uleb128 0x19
+ 646 0085 11       		.uleb128 0x11
+ 647 0086 01       		.uleb128 0x1
+ 648 0087 12       		.uleb128 0x12
+ 649 0088 06       		.uleb128 0x6
+ 650 0089 40       		.uleb128 0x40
+ 651 008a 18       		.uleb128 0x18
+ 652 008b 9742     		.uleb128 0x2117
+ 653 008d 19       		.uleb128 0x19
+ 654 008e 01       		.uleb128 0x1
+ 655 008f 13       		.uleb128 0x13
+ 656 0090 00       		.byte	0
+ 657 0091 00       		.byte	0
+ 658 0092 09       		.uleb128 0x9
+ 659 0093 34       		.uleb128 0x34
+ 660 0094 00       		.byte	0
+ 661 0095 03       		.uleb128 0x3
+ 662 0096 08       		.uleb128 0x8
+ 663 0097 3A       		.uleb128 0x3a
+ 664 0098 0B       		.uleb128 0xb
+ 665 0099 3B       		.uleb128 0x3b
+ 666 009a 0B       		.uleb128 0xb
+ 667 009b 49       		.uleb128 0x49
+ 668 009c 13       		.uleb128 0x13
+ 669 009d 02       		.uleb128 0x2
+ 670 009e 17       		.uleb128 0x17
+ 671 009f 00       		.byte	0
+ 672 00a0 00       		.byte	0
+ 673 00a1 0A       		.uleb128 0xa
+ 674 00a2 34       		.uleb128 0x34
+ 675 00a3 00       		.byte	0
+ 676 00a4 03       		.uleb128 0x3
+ 677 00a5 0E       		.uleb128 0xe
+ 678 00a6 3A       		.uleb128 0x3a
+ 679 00a7 0B       		.uleb128 0xb
+ 680 00a8 3B       		.uleb128 0x3b
+ 681 00a9 0B       		.uleb128 0xb
+ 682 00aa 49       		.uleb128 0x49
+ 683 00ab 13       		.uleb128 0x13
+ 684 00ac 02       		.uleb128 0x2
+ 685 00ad 17       		.uleb128 0x17
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 14
+
+
+ 686 00ae 00       		.byte	0
+ 687 00af 00       		.byte	0
+ 688 00b0 0B       		.uleb128 0xb
+ 689 00b1 34       		.uleb128 0x34
+ 690 00b2 00       		.byte	0
+ 691 00b3 03       		.uleb128 0x3
+ 692 00b4 0E       		.uleb128 0xe
+ 693 00b5 3A       		.uleb128 0x3a
+ 694 00b6 0B       		.uleb128 0xb
+ 695 00b7 3B       		.uleb128 0x3b
+ 696 00b8 0B       		.uleb128 0xb
+ 697 00b9 49       		.uleb128 0x49
+ 698 00ba 13       		.uleb128 0x13
+ 699 00bb 02       		.uleb128 0x2
+ 700 00bc 18       		.uleb128 0x18
+ 701 00bd 00       		.byte	0
+ 702 00be 00       		.byte	0
+ 703 00bf 0C       		.uleb128 0xc
+ 704 00c0 34       		.uleb128 0x34
+ 705 00c1 00       		.byte	0
+ 706 00c2 03       		.uleb128 0x3
+ 707 00c3 0E       		.uleb128 0xe
+ 708 00c4 3A       		.uleb128 0x3a
+ 709 00c5 0B       		.uleb128 0xb
+ 710 00c6 3B       		.uleb128 0x3b
+ 711 00c7 0B       		.uleb128 0xb
+ 712 00c8 49       		.uleb128 0x49
+ 713 00c9 13       		.uleb128 0x13
+ 714 00ca 1C       		.uleb128 0x1c
+ 715 00cb 0B       		.uleb128 0xb
+ 716 00cc 00       		.byte	0
+ 717 00cd 00       		.byte	0
+ 718 00ce 0D       		.uleb128 0xd
+ 719 00cf 898201   		.uleb128 0x4109
+ 720 00d2 01       		.byte	0x1
+ 721 00d3 11       		.uleb128 0x11
+ 722 00d4 01       		.uleb128 0x1
+ 723 00d5 31       		.uleb128 0x31
+ 724 00d6 13       		.uleb128 0x13
+ 725 00d7 01       		.uleb128 0x1
+ 726 00d8 13       		.uleb128 0x13
+ 727 00d9 00       		.byte	0
+ 728 00da 00       		.byte	0
+ 729 00db 0E       		.uleb128 0xe
+ 730 00dc 8A8201   		.uleb128 0x410a
+ 731 00df 00       		.byte	0
+ 732 00e0 02       		.uleb128 0x2
+ 733 00e1 18       		.uleb128 0x18
+ 734 00e2 9142     		.uleb128 0x2111
+ 735 00e4 18       		.uleb128 0x18
+ 736 00e5 00       		.byte	0
+ 737 00e6 00       		.byte	0
+ 738 00e7 0F       		.uleb128 0xf
+ 739 00e8 898201   		.uleb128 0x4109
+ 740 00eb 01       		.byte	0x1
+ 741 00ec 11       		.uleb128 0x11
+ 742 00ed 01       		.uleb128 0x1
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 15
+
+
+ 743 00ee 31       		.uleb128 0x31
+ 744 00ef 13       		.uleb128 0x13
+ 745 00f0 00       		.byte	0
+ 746 00f1 00       		.byte	0
+ 747 00f2 10       		.uleb128 0x10
+ 748 00f3 01       		.uleb128 0x1
+ 749 00f4 01       		.byte	0x1
+ 750 00f5 49       		.uleb128 0x49
+ 751 00f6 13       		.uleb128 0x13
+ 752 00f7 01       		.uleb128 0x1
+ 753 00f8 13       		.uleb128 0x13
+ 754 00f9 00       		.byte	0
+ 755 00fa 00       		.byte	0
+ 756 00fb 11       		.uleb128 0x11
+ 757 00fc 21       		.uleb128 0x21
+ 758 00fd 00       		.byte	0
+ 759 00fe 49       		.uleb128 0x49
+ 760 00ff 13       		.uleb128 0x13
+ 761 0100 2F       		.uleb128 0x2f
+ 762 0101 0B       		.uleb128 0xb
+ 763 0102 00       		.byte	0
+ 764 0103 00       		.byte	0
+ 765 0104 12       		.uleb128 0x12
+ 766 0105 34       		.uleb128 0x34
+ 767 0106 00       		.byte	0
+ 768 0107 03       		.uleb128 0x3
+ 769 0108 0E       		.uleb128 0xe
+ 770 0109 3A       		.uleb128 0x3a
+ 771 010a 0B       		.uleb128 0xb
+ 772 010b 3B       		.uleb128 0x3b
+ 773 010c 05       		.uleb128 0x5
+ 774 010d 49       		.uleb128 0x49
+ 775 010e 13       		.uleb128 0x13
+ 776 010f 3F       		.uleb128 0x3f
+ 777 0110 19       		.uleb128 0x19
+ 778 0111 3C       		.uleb128 0x3c
+ 779 0112 19       		.uleb128 0x19
+ 780 0113 00       		.byte	0
+ 781 0114 00       		.byte	0
+ 782 0115 13       		.uleb128 0x13
+ 783 0116 35       		.uleb128 0x35
+ 784 0117 00       		.byte	0
+ 785 0118 49       		.uleb128 0x49
+ 786 0119 13       		.uleb128 0x13
+ 787 011a 00       		.byte	0
+ 788 011b 00       		.byte	0
+ 789 011c 14       		.uleb128 0x14
+ 790 011d 34       		.uleb128 0x34
+ 791 011e 00       		.byte	0
+ 792 011f 03       		.uleb128 0x3
+ 793 0120 0E       		.uleb128 0xe
+ 794 0121 3A       		.uleb128 0x3a
+ 795 0122 0B       		.uleb128 0xb
+ 796 0123 3B       		.uleb128 0x3b
+ 797 0124 0B       		.uleb128 0xb
+ 798 0125 49       		.uleb128 0x49
+ 799 0126 13       		.uleb128 0x13
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 16
+
+
+ 800 0127 3F       		.uleb128 0x3f
+ 801 0128 19       		.uleb128 0x19
+ 802 0129 02       		.uleb128 0x2
+ 803 012a 18       		.uleb128 0x18
+ 804 012b 00       		.byte	0
+ 805 012c 00       		.byte	0
+ 806 012d 15       		.uleb128 0x15
+ 807 012e 2E       		.uleb128 0x2e
+ 808 012f 00       		.byte	0
+ 809 0130 3F       		.uleb128 0x3f
+ 810 0131 19       		.uleb128 0x19
+ 811 0132 3C       		.uleb128 0x3c
+ 812 0133 19       		.uleb128 0x19
+ 813 0134 6E       		.uleb128 0x6e
+ 814 0135 0E       		.uleb128 0xe
+ 815 0136 03       		.uleb128 0x3
+ 816 0137 0E       		.uleb128 0xe
+ 817 0138 3A       		.uleb128 0x3a
+ 818 0139 0B       		.uleb128 0xb
+ 819 013a 3B       		.uleb128 0x3b
+ 820 013b 0B       		.uleb128 0xb
+ 821 013c 00       		.byte	0
+ 822 013d 00       		.byte	0
+ 823 013e 16       		.uleb128 0x16
+ 824 013f 2E       		.uleb128 0x2e
+ 825 0140 00       		.byte	0
+ 826 0141 3F       		.uleb128 0x3f
+ 827 0142 19       		.uleb128 0x19
+ 828 0143 3C       		.uleb128 0x3c
+ 829 0144 19       		.uleb128 0x19
+ 830 0145 6E       		.uleb128 0x6e
+ 831 0146 0E       		.uleb128 0xe
+ 832 0147 03       		.uleb128 0x3
+ 833 0148 0E       		.uleb128 0xe
+ 834 0149 00       		.byte	0
+ 835 014a 00       		.byte	0
+ 836 014b 00       		.byte	0
+ 837              		.section	.debug_loc,"",%progbits
+ 838              	.Ldebug_loc0:
+ 839              	.LLST0:
+ 840 0000 04000000 		.4byte	.LVL1
+ 841 0004 2A000000 		.4byte	.LVL7
+ 842 0008 0200     		.2byte	0x2
+ 843 000a 30       		.byte	0x30
+ 844 000b 9F       		.byte	0x9f
+ 845 000c 2A000000 		.4byte	.LVL7
+ 846 0010 3E000000 		.4byte	.LVL12
+ 847 0014 0100     		.2byte	0x1
+ 848 0016 54       		.byte	0x54
+ 849 0017 00000000 		.4byte	0
+ 850 001b 00000000 		.4byte	0
+ 851              	.LLST1:
+ 852 001f 04000000 		.4byte	.LVL1
+ 853 0023 2A000000 		.4byte	.LVL7
+ 854 0027 0200     		.2byte	0x2
+ 855 0029 30       		.byte	0x30
+ 856 002a 9F       		.byte	0x9f
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 17
+
+
+ 857 002b 2A000000 		.4byte	.LVL7
+ 858 002f 44000000 		.4byte	.LVL13
+ 859 0033 0100     		.2byte	0x1
+ 860 0035 55       		.byte	0x55
+ 861 0036 48000000 		.4byte	.LVL14
+ 862 003a 70000000 		.4byte	.LFE66
+ 863 003e 0100     		.2byte	0x1
+ 864 0040 54       		.byte	0x54
+ 865 0041 00000000 		.4byte	0
+ 866 0045 00000000 		.4byte	0
+ 867              		.section	.debug_aranges,"",%progbits
+ 868 0000 2C000000 		.4byte	0x2c
+ 869 0004 0200     		.2byte	0x2
+ 870 0006 00000000 		.4byte	.Ldebug_info0
+ 871 000a 04       		.byte	0x4
+ 872 000b 00       		.byte	0
+ 873 000c 0000     		.2byte	0
+ 874 000e 0000     		.2byte	0
+ 875 0010 00000000 		.4byte	.LFB64
+ 876 0014 14000000 		.4byte	.LFE64-.LFB64
+ 877 0018 00000000 		.4byte	.LFB65
+ 878 001c 0C000000 		.4byte	.LFE65-.LFB65
+ 879 0020 00000000 		.4byte	.LFB66
+ 880 0024 70000000 		.4byte	.LFE66-.LFB66
+ 881 0028 00000000 		.4byte	0
+ 882 002c 00000000 		.4byte	0
+ 883              		.section	.debug_ranges,"",%progbits
+ 884              	.Ldebug_ranges0:
+ 885 0000 00000000 		.4byte	.LFB64
+ 886 0004 14000000 		.4byte	.LFE64
+ 887 0008 00000000 		.4byte	.LFB65
+ 888 000c 0C000000 		.4byte	.LFE65
+ 889 0010 00000000 		.4byte	.LFB66
+ 890 0014 70000000 		.4byte	.LFE66
+ 891 0018 00000000 		.4byte	0
+ 892 001c 00000000 		.4byte	0
+ 893              		.section	.debug_line,"",%progbits
+ 894              	.Ldebug_line0:
+ 895 0000 34020000 		.section	.debug_str,"MS",%progbits,1
+ 895      0200DB01 
+ 895      00000201 
+ 895      FB0E0D00 
+ 895      01010101 
+ 896              	.LASF9:
+ 897 0000 5F5F696E 		.ascii	"__int32_t\000"
+ 897      7433325F 
+ 897      7400
+ 898              	.LASF28:
+ 899 000a 736E7072 		.ascii	"snprintf\000"
+ 899      696E7466 
+ 899      00
+ 900              	.LASF17:
+ 901 0013 74657874 		.ascii	"text\000"
+ 901      00
+ 902              	.LASF16:
+ 903 0018 72656164 		.ascii	"reading\000"
+ 903      696E6700 
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 18
+
+
+ 904              	.LASF11:
+ 905 0020 666C6F61 		.ascii	"float\000"
+ 905      7400
+ 906              	.LASF20:
+ 907 0026 5F6D696C 		.ascii	"_millis\000"
+ 907      6C697300 
+ 908              	.LASF30:
+ 909 002e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 909      43313120 
+ 909      352E342E 
+ 909      31203230 
+ 909      31363036 
+ 910 0061 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 910      20726576 
+ 910      6973696F 
+ 910      6E203233 
+ 910      37373135 
+ 911 0094 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 911      66756E63 
+ 911      74696F6E 
+ 911      2D736563 
+ 911      74696F6E 
+ 912              	.LASF5:
+ 913 00bc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 913      20756E73 
+ 913      69676E65 
+ 913      6420696E 
+ 913      7400
+ 914              	.LASF3:
+ 915 00ce 73686F72 		.ascii	"short unsigned int\000"
+ 915      7420756E 
+ 915      7369676E 
+ 915      65642069 
+ 915      6E7400
+ 916              	.LASF23:
+ 917 00e1 55415254 		.ascii	"UART_Start\000"
+ 917      5F537461 
+ 917      727400
+ 918              	.LASF32:
+ 919 00ec 433A5C41 		.ascii	"C:\\Ari\\Rocketry\\Porpellent testing code\\PSOC\\D"
+ 919      72695C52 
+ 919      6F636B65 
+ 919      7472795C 
+ 919      506F7270 
+ 920 011a 53204144 		.ascii	"S ADC to UART.cydsn\000"
+ 920      4320746F 
+ 920      20554152 
+ 920      542E6379 
+ 920      64736E00 
+ 921              	.LASF22:
+ 922 012e 6D696C6C 		.ascii	"millis_interrupt_StartEx\000"
+ 922      69735F69 
+ 922      6E746572 
+ 922      72757074 
+ 922      5F537461 
+ 923              	.LASF25:
+ 924 0147 6164635F 		.ascii	"adc_StartConvert\000"
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 19
+
+
+ 924      53746172 
+ 924      74436F6E 
+ 924      76657274 
+ 924      00
+ 925              	.LASF21:
+ 926 0158 6D696C6C 		.ascii	"millis_interrupt_ClearPending\000"
+ 926      69735F69 
+ 926      6E746572 
+ 926      72757074 
+ 926      5F436C65 
+ 927              	.LASF1:
+ 928 0176 756E7369 		.ascii	"unsigned char\000"
+ 928      676E6564 
+ 928      20636861 
+ 928      7200
+ 929              	.LASF36:
+ 930 0184 6D656D73 		.ascii	"memset\000"
+ 930      657400
+ 931              	.LASF12:
+ 932 018b 646F7562 		.ascii	"double\000"
+ 932      6C6500
+ 933              	.LASF27:
+ 934 0192 6164635F 		.ascii	"adc_GetResult32\000"
+ 934      47657452 
+ 934      6573756C 
+ 934      74333200 
+ 935              	.LASF35:
+ 936 01a2 6D61696E 		.ascii	"main\000"
+ 936      00
+ 937              	.LASF26:
+ 938 01a7 6164635F 		.ascii	"adc_IsEndConversion\000"
+ 938      4973456E 
+ 938      64436F6E 
+ 938      76657273 
+ 938      696F6E00 
+ 939              	.LASF33:
+ 940 01bb 6D696C6C 		.ascii	"millis_isr\000"
+ 940      69735F69 
+ 940      737200
+ 941              	.LASF19:
+ 942 01c6 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 942      52784275 
+ 942      66666572 
+ 942      00
+ 943              	.LASF8:
+ 944 01d3 756E7369 		.ascii	"unsigned int\000"
+ 944      676E6564 
+ 944      20696E74 
+ 944      00
+ 945              	.LASF7:
+ 946 01e0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 946      206C6F6E 
+ 946      6720756E 
+ 946      7369676E 
+ 946      65642069 
+ 947              	.LASF10:
+ 948 01f7 696E7433 		.ascii	"int32_t\000"
+ARM GAS  C:\Users\hp\AppData\Local\Temp\ccjJcRKn.s 			page 20
+
+
+ 948      325F7400 
+ 949              	.LASF15:
+ 950 01ff 73697A65 		.ascii	"sizetype\000"
+ 950      74797065 
+ 950      00
+ 951              	.LASF6:
+ 952 0208 6C6F6E67 		.ascii	"long long int\000"
+ 952      206C6F6E 
+ 952      6720696E 
+ 952      7400
+ 953              	.LASF31:
+ 954 0216 6D61696E 		.ascii	"main.c\000"
+ 954      2E6300
+ 955              	.LASF13:
+ 956 021d 63686172 		.ascii	"char\000"
+ 956      00
+ 957              	.LASF2:
+ 958 0222 73686F72 		.ascii	"short int\000"
+ 958      7420696E 
+ 958      7400
+ 959              	.LASF24:
+ 960 022c 6164635F 		.ascii	"adc_Start\000"
+ 960      53746172 
+ 960      7400
+ 961              	.LASF4:
+ 962 0236 6C6F6E67 		.ascii	"long int\000"
+ 962      20696E74 
+ 962      00
+ 963              	.LASF34:
+ 964 023f 6D696C6C 		.ascii	"millis\000"
+ 964      697300
+ 965              	.LASF14:
+ 966 0246 6C6F6E67 		.ascii	"long double\000"
+ 966      20646F75 
+ 966      626C6500 
+ 967              	.LASF0:
+ 968 0252 7369676E 		.ascii	"signed char\000"
+ 968      65642063 
+ 968      68617200 
+ 969              	.LASF29:
+ 970 025e 55415254 		.ascii	"UART_PutString\000"
+ 970      5F507574 
+ 970      53747269 
+ 970      6E6700
+ 971              	.LASF18:
+ 972 026d 73616D70 		.ascii	"samp_rate\000"
+ 972      5F726174 
+ 972      6500
+ 973              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
